@@ -27,32 +27,27 @@ class CrudController {
 
     async readAll(req, res) {
         let data = await this.service.readChunk(req.query);
-        if (req.headers.accept === 'yaml') res.end(YAML.stringify(data));
-        else res.json(data);
+        res.json(data);
     }
 
     async read(req, res) {
         let data = await this.service.read(req.params.id);
-        if (req.headers.accept  === 'yaml') res.end(YAML.stringify(data));
-        else res.json(data);
+        res.json(data);
     }
 
     async create(req, res) {
         let data = await this.service.create(req.body);
-        if (req.headers.accept  === 'yaml') res.end(YAML.stringify(data));
-        else res.json(data);
+        res.json(data);
     }
 
     async update(req, res) {
         let data = await this.service.update(req.params.id, req.body);
-        if (req.headers.accept  === 'yaml') res.end(YAML.stringify(data));
-        else res.json(data);
+        res.json(data);
     }
 
     async delete(req, res) {
         let data =  await this.service.delete(req.params.id);
-        if (req.headers.accept  === 'yaml') res.end(YAML.stringify(data));
-        else res.json(data);
+        res.json(data);
     }
 
     registerRoutes() {
