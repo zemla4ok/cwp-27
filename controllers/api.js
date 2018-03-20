@@ -11,17 +11,11 @@ module.exports = (
     const userController = require('./user')(
         userService
     );
-    const teamController = require('./team')(
-        teamService
-    );
-    const workPeriodController = require('./workPeriod')(
-        workPeriodService
-    );
+
 
     //defining routers
     router.use('/users', userController);
-    router.use('/teams', teamController);
-    router.use('/teams', workPeriodController);
+
 
     return router;
 }

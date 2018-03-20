@@ -1,7 +1,5 @@
 const express = require('express');
 const wrap = require('../helpers/wrap');
-const YAML = require('yamljs');
-
 
 class CrudController {
     constructor(service) {

@@ -1,7 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParse = require('body-parser');
-const YAML = require('yamljs');
 //services
 const UserService = require('./services/user');
 
