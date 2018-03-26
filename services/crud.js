@@ -50,9 +50,9 @@ class CrudService{
     }
 
     async update(id, data){
-        await this.repository.update(data, { where: { id: id }, limit: 1 });
-
-        return this.read(id);
+         await this.repository.update(data, { where: { id: id }, limit: 1 });
+        
+         return this.read(id);
     }
 
     async delete(id){

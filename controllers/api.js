@@ -2,20 +2,19 @@ const express = require('express');
 
 module.exports = (
     userService,
-    teamService,
-    workPeriodService,
+    tweetService,
 ) => {
     const router = express.Router();
 
     //defining cntroller
     const userController = require('./user')(
-        userService
+        userService,
+        tweetService
     );
 
 
     //defining routers
     router.use('/users', userController);
-
 
     return router;
 }

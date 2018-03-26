@@ -1,9 +1,19 @@
 const CrudService = require('./crud');
 const validator = require('../helpers/validation');
 
-class UserService extends CrudService{
+class TweetService extends CrudService{
     constructor(repository){
         super(repository);
+    }
+
+    async readAll(data){
+        let tweets = await super.readChunk();
+        let rc = []
+        tweets.forEach(tweet => {
+            if(tweet.authorId == data.authorId)
+                rc.push(tweet);
+        });
+        return rc;
     }
 
     async create(data){
@@ -17,9 +27,7 @@ class UserService extends CrudService{
     }
 
     async update(id, data){
-        console.log(id);
-        console.log(data);
-        const validRes = validator.check('tweet'. data);
+        const validRes = validator.check('tweetUpd'. data);
         if(validRes.error){
             return{code:400, message:'validation error'};
         } 
@@ -29,4 +37,4 @@ class UserService extends CrudService{
     }
 }
 
-module.exports = UserService; 
+module.exports = TweetService; 

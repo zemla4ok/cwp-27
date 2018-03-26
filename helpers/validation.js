@@ -9,6 +9,16 @@ const schemas = {
         name: Joi.string().optional(),
         email: Joi.string().email().optional()
     }),
+    'tweet': Joi.object().keys({
+        message: Joi.string(),
+        publishedOn: Joi.string(),
+        authorId: Joi.string()
+    }),
+    'tweetUpd': Joi.object().keys({
+        message: Joi.string().optional(),
+        publishedOn: Joi.string().optional(),
+        authorId: Joi.string().optional()
+    })
 }
 
 exports.check = function (schema, body) {
