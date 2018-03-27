@@ -26,6 +26,25 @@ class CrudService{
             order: [[options.orderField, options.order.toUpperCase()]],
             raw: true
         });
+        for(let i = 0; i < tweets.length; i++){
+            tweets[i].links = [];
+            if(tweets[i - 1]){
+                tweets[i].links[0] = {
+                    rel: 'prev',
+                    href: 'http://localhost:3000/tweets/' + tweets[i - 1].id 
+                };
+            }
+            tweets[i].links[1] = {
+                rel: 'self',
+                href: 'http://localhost:3000/tweets/' + tweets[i].id 
+            }
+            if(tweets[i + 1]){
+                tweets[i].links[2] = {
+                    rel: 'next',
+                    href: 'http://localhost:3000/tweets/' + tweets[i + 1].id 
+                }
+            }
+        }
         let data = {
             tweets: tweets,
             meta: options
