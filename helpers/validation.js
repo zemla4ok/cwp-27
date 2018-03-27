@@ -18,6 +18,10 @@ const schemas = {
         message: Joi.string().optional(),
         publishedOn: Joi.string().optional(),
         authorId: Joi.string().optional()
+    }),
+    'likes': Joi.object().keys({
+        tweetId: Joi.number().positive(),
+        authorId: Joi.number().positive(),
     })
 }
 

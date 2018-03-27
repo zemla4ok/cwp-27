@@ -1,12 +1,15 @@
 const CrudController = require('./crud');
 
 class TweetController extends CrudController {
-    constructor(tweetService) {
+    constructor(tweetService, likeService) {
         super(tweetService);
 
         this.create = this.create.bind(this);
         this.update = this.update.bind(this);
         this.update = this.readAll.bind(this);
+ 
+        const LikeController = require('./like')(likeService);
+        this.router.use('/:tweetId/likes', LikeController);
 
         this.registerRoutes();
     }
@@ -30,7 +33,7 @@ class TweetController extends CrudController {
     }
 }
 
-module.exports = (tweetService) => { 
-    const controller = new TweetController(tweetService);
+module.exports = (tweetService, likeService) => { 
+    const controller = new TweetController(tweetService, likeService);
     return controller.router;
 }

@@ -4,6 +4,7 @@ const bodyParse = require('body-parser');
 //services
 const UserService = require('./services/user');
 const TweetService = require('./services/tweet');
+const LikeService = require('./services/like');
 
 module.exports = (db, config) => {
     const app = express();
@@ -14,11 +15,15 @@ module.exports = (db, config) => {
     const tweetService = new TweetService(
         db.tweet
     );
+    const likeService = new LikeService(
+        db.like
+    );
 
     //controllers
     const apiController = require('./controllers/api')(
         userService,
-        tweetService
+        tweetService,
+        likeService
     );
 
     //Mounting

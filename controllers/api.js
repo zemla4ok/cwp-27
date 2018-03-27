@@ -3,13 +3,15 @@ const express = require('express');
 module.exports = (
     userService,
     tweetService,
+    likeService
 ) => {
     const router = express.Router();
 
     //defining cntroller
     const userController = require('./user')(
         userService,
-        tweetService
+        tweetService,
+        likeService
     );
 
 
