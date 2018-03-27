@@ -15,16 +15,22 @@ class CrudService{
 
     async readChunk(options){
         options = Object.assign({}, this.defaults.readChunk, options);
-
+        options.limit = parseInt(options.limit);
+        options.page = parseInt(options.page);
         let limit = options.limit;
         let offset = (options.page - 1) * options.limit;
 
-        return await this.repository.findAll({
-            limit: limit,
+        let tweets = await this.repository.findAll({
+            limit: 5,
             offset: offset,
             order: [[options.orderField, options.order.toUpperCase()]],
             raw: true
         });
+        let data = {
+            tweets: tweets,
+            meta: options
+        }
+        return data;
     }
 
     async read(id){

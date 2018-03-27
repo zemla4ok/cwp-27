@@ -13,10 +13,14 @@ module.exports = (
         tweetService,
         likeService
     );
+    const likesController = require('./tweets')(
+        tweetService
+    )
 
 
     //defining routers
     router.use('/users', userController);
+    router.use('/tweets', likesController);
 
     return router;
 }
